@@ -3,7 +3,6 @@ import fetch from 'node-fetch'
 import { writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
-
 const URLS = {
     leaderboard: 'https://kingsleague.pro/estadisticas/clasificacion/'
 }
@@ -16,7 +15,6 @@ const LEADERBOARD_SELECTOR= {
     yellowCards: { selector: '.fs-table-text_8', typeOf: 'number' },    // Tarjetas Amarillas
     redCards: { selector: '.fs-table-text_9', typeOf: 'number' }        // Tarjetas Rojas
 }
-
 
 async function scrape(url) {                    // Scripea la URL
     const res = await fetch(url)  
