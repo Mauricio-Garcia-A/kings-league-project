@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import leaderboard from '../db/leaderboard.json'
+import { serveStatic } from 'hono/serve-static.module'
 
 
 const app = new Hono()
@@ -9,10 +10,17 @@ app.get('/', (ctx) =>
     {
       endpoint: '/leaderboard',
       description: 'Desvuelve la tabla de clasificacion de la KingsLeague'
-    }
+    },
+	{
+		endpoint: '/static/logos/1k.svg',
+		description: 'Imagen del logo del equipo 1k'
+	}
   ])
 )
 app.get('/leaderboard', (ctx) => ctx.json(leaderboard))
+
+
+app.get('/static/*', serveStatic({ root: './' }))
 
 export default app
 
