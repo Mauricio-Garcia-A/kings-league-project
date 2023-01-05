@@ -1,7 +1,15 @@
 import * as cheerio from 'cheerio'
 import fetch from 'node-fetch'
-import { writeFile } from 'node:fs/promises'
+import { writeFile, readFile} from 'node:fs/promises'
 import path from 'node:path'
+
+const DB_PATH = path.join(process.cwd(),'db')
+
+const TEAMS = await readFile(`${DB_PATH}/teams.json`, 'utf-8').then(JSON.parse)
+//import TEAMS  from '../db/teams.json' assert {type:'json'}       //Esta tendria que ser la manera correcta de hacerlo, pero da error
+
+const getTeamFrom = ({name}) => TEAMS.find(team => team.name === name)
+
 
 const URLS = {
     leaderboard: 'https://kingsleague.pro/estadisticas/clasificacion/'
@@ -52,15 +60,17 @@ async function getLeaderBoard(){                // Formatea el html con los valo
             return [key,value]
         })
 
-        leaderboard.push(Object.fromEntries(leaderBoardEntries))
-
+        const {team:teamName, ...leaderboardForTeam} = Object.fromEntries(leaderBoardEntries)
+        const team = getTeamFrom({name:teamName})
+        
+        //leaderboard.push(Object.fromEntries(leaderBoardEntries))
+        leaderboard.push({...leaderboardForTeam, team})
     })
 
     return leaderboard
 }
 
 const leaderboard = await getLeaderBoard()                          // objeto con la informacion de los equipos
+//const filePath = path.join(process.cwd(),'db/leaderboard.json')             // Se crea la ruta relativa donde guardar JSON con los equipos
 
-const filePath = path.join(process.cwd(),'db/leaderboard.json')             // Se crea la ruta relativa donde guardar JSON con los equipos
-
-await writeFile(filePath, JSON.stringify(leaderboard, null, 2), 'utf-8')       // Creo/modifico/actualizo el arcrivo leaderboard.json con la info de los equipos
+await writeFile(`${DB_PATH}/leaderboard.json`, JSON.stringify(leaderboard, null, 2), 'utf-8')       // Creo/modifico/actualizo el arcrivo leaderboard.json con la info de los equipos
