@@ -1,10 +1,11 @@
+// SCRAPING DE LA WEB
+
 import * as cheerio from 'cheerio'
 import fetch from 'node-fetch'
 import { writeFile, readFile} from 'node:fs/promises'
 import path from 'node:path'
 
 const DB_PATH = path.join(process.cwd(),'db')
-
 const TEAMS = await readFile(`${DB_PATH}/teams.json`, 'utf-8').then(JSON.parse)
 //import TEAMS  from '../db/teams.json' assert {type:'json'}       //Esta tendria que ser la manera correcta de hacerlo, pero da error
 
