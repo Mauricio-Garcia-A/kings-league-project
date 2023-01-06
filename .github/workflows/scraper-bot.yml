@@ -17,13 +17,13 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.15.1
+          node-version: 18
       - uses: pnpm/action-setup@v2
         with:
           version: 7.22.0
           run_install: true
       - run: |
-          npm run scrape
+          node scraping/leaderboard.js
           git config user.name Mauricio-Garcia-A-BOT
           git add -A
           git commit -m "[bot] Actualizacion BD"
