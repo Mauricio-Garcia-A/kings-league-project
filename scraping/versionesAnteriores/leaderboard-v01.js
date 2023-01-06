@@ -2,15 +2,21 @@
 
 import * as cheerio from 'cheerio'
 import fetch from 'node-fetch'
-import {TEAMS, PRESIDENTS, writeDBFile } from './utils.js'
+import { writeFile, readFile} from 'node:fs/promises'                 //se elimina por Rezactorizacion
+//import { writeDBFile } from './utils'                                   //se elimina por Refactorizacion linea anterior con mejores practicas
+                                        
+/*  ------  Refactorizacion codigo, en ves de recuperar el archivo teams.js aqui, lo recupero en utils.js y lo traigo de ahi ---------   */
+import path from 'node:path'                        
+const DB_PATH = path.join(process.cwd(),'db')
+const TEAMS = await readFile(`${DB_PATH}/teams.json`, 'utf-8').then(JSON.parse)
+//import TEAMS  from '../db/teams.json' assert {type:'json'}            //Esta tendria que ser la manera correcta de hacerlo, pero da error
 
 
-const getTeamFrom = ({name}) => {
-    const {presidentId, ...restOfTeam}=TEAMS.find(team => team.name === name)
-    const president = PRESIDENTS.find(president => president.id === presidentId)
 
-    return { ... restOfTeam, president}
-}
+//import { TEAMS } from './utils'
+
+
+const getTeamFrom = ({name}) => TEAMS.find(team => team.name === name)
 
 const URLS = {
     leaderboard: 'https://kingsleague.pro/estadisticas/clasificacion/'
@@ -42,7 +48,16 @@ async function getLeaderBoard(){                // Formatea el html con los valo
     
     $rows.each((i,el)=>{
         const $el = $(el)
-       
+        /*
+        const rowTeam = $el.find('.fs-table-text_3').text()
+        const rowVictories= $el.find('.fs-table-text_4').text()
+        const rowLoses = $el.find('.fs-table-text_5').text()
+        const rowScoredGoals =  $el.find('.fs-table-text_6').text()
+        const rowConcededGoals = $el.find('.fs-table-text_7').text()
+        const rowCardsYellow = $el.find('.fs-table-text_8').text()
+        const rowCardsRed = $el.find('.fs-table-text_9').text()
+        */
+
         const leaderBoardEntries = Object.entries(LEADERBOARD_SELECTOR).map(([key, { selector, typeOf }])=>{     // traforma {} en [] para recorrerlo con map
             const rowValue = $el.find(selector).text()                                                           // selecciona el valor segun el selector
             const clearValue = clearText(rowValue)                                                              // Limpia el resultado
@@ -63,5 +78,10 @@ async function getLeaderBoard(){                // Formatea el html con los valo
 }
 
 const leaderboard = await getLeaderBoard()                          // objeto con la informacion de los equipos
+//const filePath = path.join(process.cwd(),'db/leaderboard.json')             // Se crea la ruta relativa donde guardar JSON con los equipos
 
-await writeDBFile(`leaderboard`,leaderboard)
+await writeFile(`${DB_PATH}/leaderboard.json`, JSON.stringify(leaderboard, null, 2), 'utf-8')       // Creo/modifico/actualizo el arcrivo leaderboard.json con la info de los equipos
+//await writeDBFile('leaderboard',leaderboard)        //Refactorizacion de la linea anterior, aplicando mejores practicas
+
+
+
