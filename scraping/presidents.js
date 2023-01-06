@@ -4,6 +4,8 @@ import { writeFile, readFile} from 'node:fs/promises'
 import path from 'node:path'
 import fetch from 'node-fetch'
 
+const urlBaseStorageImage = 'https://kings-league-api.garcia-mauricio-ariel.workers.dev/static/presidents/'
+
 const DB_PATH = path.join(process.cwd(), './db/')
 const RAW_PRESIDENTS = await readFile(`${DB_PATH}/raw-presidents.json`,'utf-8').then(JSON.parse)            // Del archivo JSON traigo la info de los presidentes
 
@@ -33,7 +35,7 @@ const presidents = await Promise.all(
         await writeFile(`${STATICS_PATH}/${imageFileName}`, buffer)     // Guardo el buffer con la imagen en el directorio establecido
 
 
-        return {id, name, image:imageFileName, teamId: 0}
+        return {id, name, image:`${urlBaseStorageImage}${imageFileName}`, teamId: 0}
 
         /* OTRA FORMA DE HACER LA LLAMADA A LA API
         const image = fetch(imageApiEndpint)
