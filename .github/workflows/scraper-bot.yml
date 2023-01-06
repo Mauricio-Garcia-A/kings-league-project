@@ -23,6 +23,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 7.22.0
+          run_intall: true
       - run: |
           node scraping/leaderboard.js
           git config user.name Mauricio-Garcia-A-BOT
