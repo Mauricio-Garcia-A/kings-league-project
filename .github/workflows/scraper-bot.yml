@@ -18,7 +18,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-
+          cache: 'npm'
+          cache-dependency-path: subdir/package-lock.json
       - run: |
           node scraping/leaderboard.js
           git config user.name Mauricio-Garcia-A-BOT
