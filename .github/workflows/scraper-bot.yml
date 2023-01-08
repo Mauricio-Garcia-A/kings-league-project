@@ -24,6 +24,7 @@ jobs:
         with:
           version: 7.22.0
       - run: |
+          pnpm init
           node scraping/leaderboard.js
           git config user.name BOT-MAG
           git add -A
