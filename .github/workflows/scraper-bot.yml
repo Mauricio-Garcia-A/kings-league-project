@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,9 +23,10 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 7.22.0
+          run_intall: true
       - run: |
           node scraping/leaderboard.js
-          git config user.name BOT-MAG
+          git config user.name Mauricio-Garcia-A-BOT
           git add -A
           git commit -m '[bot] Actualizacion BD'
           git push origin main
