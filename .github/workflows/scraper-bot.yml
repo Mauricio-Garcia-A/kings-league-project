@@ -1,30 +1,32 @@
-name: Scrape Kings League Infojobs Website
+name: Scrapear paguina king league web todos los domingos
 
 on:
   workflow_dispatch:
-
+  
   repository_dispatch:
     types:
       - webhook
 
   schedule:
-    - cron: "0 */1 * * 0"
+    - cron: 0 */1 * * 0
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 16.15.1
       - uses: pnpm/action-setup@v2
         with:
-          version: 7.18.2
-          run_install: true
+          version: 7.22.0
+          run_intall: true
       - run: |
-          npm run scrape
-          git config user.name kings-league-bot
+          node scraping/leaderboard.js
+          git config user.name Mauricio-Garcia-A-BOT
           git add -A
-          git commit -m "[bot] Update Kings League Database"
+          git commit -m '[bot] Actualizacion BD'
           git push origin main
