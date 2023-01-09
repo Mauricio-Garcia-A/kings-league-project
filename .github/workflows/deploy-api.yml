@@ -7,7 +7,7 @@ on:
 
 jobs:
     deploy: 
-      rums-on: ubuntu-22.04
+      runs-on: ubuntu-22.04
       name: Deploy API to Cloudflare Workers
       steps:
         - uses: actions/checkout@v3
