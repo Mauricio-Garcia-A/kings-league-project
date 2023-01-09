@@ -7,26 +7,23 @@ const teams = await response.json()
 ---
 
 <Layout title="Welcome to Astro.">
+	<header>
+		{ teams.map(team =>{
+				return 	<img src={team.image} alt={`img-${team.id}`} />				
+		})}
+	</header>
 	<main>
 		<h1>KINGS <span class="text-gradient">LEAGUE</span></h1>
 		<p class="instructions">
 			Sito web de prueba <code>git/pages</code> de la <strong>KingsLeague</strong>.
 		</p>
-		{
-			teams.map(team =>{
-				return 	<div>
-							<img src={team.image} alt={`img-${team.id}`} />
-							<br />
-							<b>{team.name}</b>
-						</div>
-			})
-		}
+		
 	</main>
 </Layout>
 
 <style>
 	img {
-		width: 100px;
+		width: 60px;
 	}
 	main {
 		margin: auto;
