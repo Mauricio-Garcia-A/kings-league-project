@@ -25,6 +25,7 @@ jobs:
           version: 7.22.0
           run_intall: true
       - run: |
+          pnpm install cheerio -E
           node scraping/leaderboard.js
           git config user.name Mauricio-Garcia-A-BOT
           git add -A
