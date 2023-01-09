@@ -41,9 +41,9 @@ app.get('/', (ctx) =>
 	}
   ])
 )
-app.get('/leaderboard', (ctx) => ctx.json(leaderboard))
+app.get('/leaderboard\\/?', (ctx) => ctx.json(leaderboard))
 
-app.get('/teams', (ctx) => ctx.json(teams))
+app.get('/teams\\/?', (ctx) => ctx.json(teams))
 app.get('/teams/:id', (ctx) => {
 	const id = ctx.req.param('id')
 	const foundTeam = teams.find((team) => team.id === id)
@@ -53,7 +53,7 @@ app.get('/teams/:id', (ctx) => {
 	  : ctx.json({ message: 'Team not found' }, 404)
 })
 
-app.get('/presidents', (ctx) => ctx.json(presidents))
+app.get('/presidents\\/?', (ctx) => ctx.json(presidents))
 app.get('/presidents/:id', (ctx) => {
 	const id = ctx.req.param('id')
 	const foundPresident = presidents.find((president) => president.id === id)
