@@ -1,4 +1,4 @@
-name: Scrapear paguina king league web todos los domingos
+name: Scrapear KingLeague WebSite todos los Domingos
 
 on:
   workflow_dispatch:
@@ -16,14 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0 
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.15.1
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7.22.0
-          run_intall: true
+          node-version: 16
+      - run: npm ci
+      - run: npm test
       - run: |
           node scraping/leaderboard.js
           git config user.name Mauricio-Garcia-A-BOT
