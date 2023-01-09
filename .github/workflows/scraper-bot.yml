@@ -16,11 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0 
-      - uses: actions/checkout@v3
+          fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 16.15.1
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.22.0
+          run_intall: true
       - run: |
           node scraping/leaderboard.js
           git config user.name Mauricio-Garcia-A-BOT
