@@ -63,5 +63,5 @@ async function getLeaderBoard(){                // Formatea el html con los valo
 }
 
 const leaderboard = await getLeaderBoard()                          // objeto con la informacion de los equipos
-
+console.log(leaderboard)
 await writeDBFile(`leaderboard`,leaderboard)
