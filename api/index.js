@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import leaderboard from '../db/leaderboard.json'
 import teams from '../db/teams.json'
 import presidents from '../db/presidents.json'
+import mvp from '../db/mvp.json'
 
 
 import { serveStatic } from 'hono/serve-static.module'
@@ -18,6 +19,10 @@ app.get('/', (ctx) =>
 	{
 		endpoint: '/teams',
 		description: 'Desvuelve informacion de los equipos de la KingsLeague'
+	},
+	{
+		endpoint: '/mvps',
+		description: 'Desvuelve la lista de los MVPs de la KingsLeague'
 	},
 	{
 		endpoint: '/teams/:id',
@@ -52,6 +57,9 @@ app.get('/teams/:id', (ctx) => {
 	  ? ctx.json(foundTeam)
 	  : ctx.json({ message: 'Team not found' }, 404)
 })
+
+app.get('/mvps\\/?', (ctx) => ctx.json(mvp))
+
 
 app.get('/presidents\\/?', (ctx) => ctx.json(presidents))
 app.get('/presidents/:id', (ctx) => {
