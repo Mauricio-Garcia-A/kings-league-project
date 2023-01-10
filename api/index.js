@@ -3,7 +3,8 @@ import leaderboard from '../db/leaderboard.json'
 import teams from '../db/teams.json'
 import presidents from '../db/presidents.json'
 import mvp from '../db/mvp.json'
-
+import top_assists from '../db/top_assists.json'
+import top_scorer from '../db/top_scorer.json'
 
 import { serveStatic } from 'hono/serve-static.module'
 
@@ -21,13 +22,22 @@ app.get('/', (ctx) =>
 		description: 'Desvuelve informacion de los equipos de la KingsLeague'
 	},
 	{
+		endpoint: '/teams/:id',
+		description: 'Desbuelve informacion del equipo solicitado'
+	},
+	{
 		endpoint: '/mvps',
 		description: 'Desvuelve la lista de los MVPs de la KingsLeague'
 	},
 	{
-		endpoint: '/teams/:id',
-		description: 'Desbuelve informacion del equipo solicitado'
+		endpoint: '/top_scorrer',
+		description: 'Desvuelve la lista de los MVPs de la KingsLeague'
 	},
+	{
+		endpoint: '/top_assists',
+		description: 'Desvuelve la lista de los MVPs de la KingsLeague'
+	},
+
     {
 		endpoint: '/presidents',
 		description: 'Desbuelve todos los presidentes de la KingsLeague'
@@ -60,6 +70,9 @@ app.get('/teams/:id', (ctx) => {
 
 app.get('/mvps\\/?', (ctx) => ctx.json(mvp))
 
+app.get('/top_scorrer\\/?', (ctx) => ctx.json(top_scorer))
+
+app.get('/top_assists\\/?', (ctx) => ctx.json(top_assists))
 
 app.get('/presidents\\/?', (ctx) => ctx.json(presidents))
 app.get('/presidents/:id', (ctx) => {
