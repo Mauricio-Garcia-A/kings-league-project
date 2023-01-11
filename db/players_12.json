@@ -1,0 +1,154 @@
+[
+    {
+        "idTeam": "porcinos-fc",
+        "nameTeam": "Porcinos FC",
+        "name": "Hugo Fraile",
+        "role": "DELANTERO",
+        "image": "hugo-fraile.png"
+    
+    },
+    {
+        "idTeam": "kunisports",
+        "nameTeam": "Kunisports",
+        "name": "Javier Saviola",
+        "role": "MEDIO",
+        "image": "javier-saviola.png"
+    
+    },
+    {
+        "idTeam": "aniquiladores-fc",
+        "nameTeam": "Aniquiladores FC",
+        "name": "David Acedo",
+        "role": "DELANTERO",
+        "image": "david-acedo.png"
+    
+    },
+    {
+        "idTeam": "jijantes-fc",
+        "nameTeam": "Jijantes FC",
+        "name": "Ibai Gómez",
+        "role": "DELANTERO",
+        "image": "ibai-gomez.png"
+    
+    },
+    {
+        "idTeam": "los-troncos-fc",
+        "nameTeam": "Los Troncos FC",
+        "name": "Víctor Sánchez",
+        "role": "MEDIO",
+        "image": "victor-sanchez.png"
+    
+    },
+    {
+        "idTeam": "pio-fc",
+        "nameTeam": "PIO FC",
+        "name": "Javi Márquez",
+        "role": "MEDIO",
+        "image": "javi-marquez.png"
+    
+    },
+    {
+        "idTeam": "ultimate-mostoles",
+        "nameTeam": "Ultimate Móstoles",
+        "name": "Rubén De la Red",
+        "role": "MEDIO",
+        "image": "ruben-de-la-red.png"
+    
+    },
+    {
+        "idTeam": "xbuyer-team",
+        "nameTeam": "XBUYER TEAM",
+        "name": "Enigma",
+        "role": "MEDIO",
+        "image": "enigma.png"
+    
+    },
+    {
+        "idTeam": "ultimate-mostoles",
+        "nameTeam": "Ultimate Móstoles",
+        "name": "Sergio García",
+        "role": "DELA TERO",
+        "image": "sergio-garcia.png"
+    
+    },
+    {
+        "idTeam": "1k",
+        "nameTeam": "1K FC",
+        "name": "Alberto Bueno",
+        "role": "DELANTERO",
+        "image": "alberto-bueno.png"
+    
+    },
+    {
+        "idTeam": "kunisports",
+        "nameTeam": "Kunisports",
+        "name": "Javi Chica",
+        "role": "DEFENSA",
+        "image": "javi-chica.png"
+    
+    },
+    {
+        "idTeam": "rayo-barcelona",
+        "nameTeam": "Rayo de Barcelona",
+        "name": "Dídac Vilà",
+        "role": "DEFENSA",
+        "image": "didac-vila.png"
+    
+    },
+    {
+        "idTeam": "pio-fc",
+        "nameTeam": "PIO FC",
+        "name": "Borja Criado",
+        "role": "DELANTERO",
+        "image": "borja-criado.png"
+    
+    },
+    {
+        "idTeam": "aniquiladores-fc",
+        "nameTeam": "Aniquiladores FC",
+        "name": "Jordi Campoy",
+        "role": "DELANTERO",
+        "image": "jordi-campoy.png"
+    
+    },
+    {
+        "idTeam": "jijantes-fc",
+        "nameTeam": "Jijantes FC",
+        "name": "Nando Quesada",
+        "role": "MEDIO",
+        "image": "nando-quesada.png"
+    
+    },
+    {
+        "idTeam": "los-troncos-fc",
+        "nameTeam": "Los Troncos FC",
+        "name": "Joan Verdú",
+        "role": "MEDIO",
+        "image": "joan-verdu.png"
+    
+    },
+    {
+        "idTeam": "el-barrio",
+        "nameTeam": "El Barrio",
+        "name": "Jorge Gómez",
+        "role": "DELANTERO",
+        "image": "jorge-gomez.png"
+    
+    },
+    {
+        "idTeam": "saiyans-fc",
+        "nameTeam": "Saiyans FC",
+        "name": "Joan Capdevila",
+        "role": "DEFENSA",
+        "image": "joan-capdevila.png"
+    
+    },
+    {
+        "idTeam": "porcinos-fc",
+        "nameTeam": "Porcinos FC",
+        "name": "Javier Hérnandez",
+        "role": "DELANTER",
+        "image": "javier-hernandez.png"
+    
+    }
+]

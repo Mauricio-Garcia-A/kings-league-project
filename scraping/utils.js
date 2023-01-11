@@ -7,6 +7,9 @@ function readDBFile (fileName) {
 }
 export const TEAMS = await readDBFile(`teams`)
 export const PRESIDENTS = await readDBFile(`presidents`)
+//export const TEAMS_AUX = await readDBFile(`teams_aux_2`)
+//export const PLAYERS_12 = await readDBFile(`players_12`)
+
 
 export function writeDBFile (fileName, data) {
     return writeFile(`${DB_PATH}/${fileName}.json`, JSON.stringify(data, null, 2), 'utf-8')       // Creo/modifico/actualizo el arcrivo leaderboard.json con la info de los equipos
