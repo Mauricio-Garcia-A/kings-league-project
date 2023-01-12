@@ -1,106 +1,138 @@
 ---
-const response = await fetch('https://kings-league-api.garcia-mauricio-ariel.workers.dev/teams')
-const teams = await response.json()
+import RedesSociales from "../RedesSociales/RedesSociales.astro";
+
+const response = await fetch(
+    "https://kings-league-api.garcia-mauricio-ariel.workers.dev/teams"
+);
+const teams = await response.json();
 
 const menu = [
-	{
-		name: 'Equipos',
-		href: '/equipos'
-	},
-	{
-		name: 'Calendario',
-		href: '/calendario'
-	},
-	{
-		name: 'Estadísticas',
-		href: '/estadisticas/clasificacion'
-	},
-	{
-		name: 'Contacto',
-		href: '/contacto'
-	},
-	{
-		name: 'Reglamento',
-		href: '/reglamento'
-	}
-]
+    {
+        name: "Equipos",
+        href: "/equipos",
+    },
+    {
+        name: "Calendario",
+        href: "/calendario",
+    },
+    {
+        name: "Estadísticas",
+        href: "/estadisticas/clasificacion",
+    },
+    {
+        name: "Contacto",
+        href: "/contacto",
+    },
+    {
+        name: "Reglamento",
+        href: "/reglamento",
+    },
+];
 ---
+
 <header>
     <div>
-        { teams.map(team =>{
+        <a href={`/`}>
+            <img class="image-logo" src="/imagenes/logo-oficial.svg" alt="logo" />
 
-            return 	<a 
-                        href={`/team/${team.id}`}
-                        title={team.name}
-                    >
-                        <img src={team.image} alt={`img-${team.id}`} />				
+        </a>
+
+        {
+            teams.map((team) => {
+                return (
+                    <a href={`/team/${team.id}`} title={team.name}>
+                        <img src={team.image} alt={`img-${team.id}`} />
                     </a>
-        })}
-            <img class='image-logo' src="/imagenes/logo-oficial.svg" alt="logo" />
-
+                );
+            })
+        }
     </div>
-    <nav>
+    <section>
+        <nav>
         <ul>
-            {menu.map(item =>{
-                return 	<li>
+            {
+                menu.map((item) => {
+                    return (
+                        <li>
                             <a href={item.href}>{item.name}</a>
                         </li>
-            })}
+                    );
+                })
+            }
         </ul>
     </nav>
-
+    <RedesSociales />
+    </section>
+    
 
 </header>
-
-
 
 <style>
     header {
         background: rgb(255, 162, 0);
-        padding: 30px;
+        padding: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
     a {
         text-decoration: none;
     }
     header div {
-            border-radius: 30px;
-            height: 60px;
-            background: rgb(12, 11, 11);
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content:space-evenly;
-            align-items: center;
-            border: 3px solid rgb(248, 166, 0);
-            outline: 5px solid rgba(0, 0, 0, 0.929);
-           
-
-        }
+        border-radius: 30px;
+        height: 60px;
+        width: 900px;
+        background: rgba(12, 11, 11, 0.919);
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        border: 3px solid rgb(248, 166, 0);
+        outline: 5px solid rgba(0, 0, 0, 0.839);
+        padding: 0px 20px 0px 20px;
+       
+    }
     img {
-		width: 40px;
+        width: 60px;
         filter: drop-shadow(0px 0px 9px rgba(255, 255, 255, 0.431));
+        transform: scale(0.7);
         transition: 0.3s;
-
     }
     img:hover {
-        width: 60px;
+        transform: scale(1);
         filter: drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.732));
     }
 
-	.image-logo {
-		width: 100px;
+    .image-logo {
+        width: 100px;
         z-index: 1;
-	}
-	ul {
+        transform: scale(0.95)
+
+    }
+    .image-logo:hover {
+        transform: scale(1);
+    }
+
+    ul {
+
         display: flex;
         flex-flow: row nowrap;
     }
-	li {
+    li {
         text-decoration: none;
-        list-style:none;
+        list-style: none;
         padding-right: 30px;
     }
     li a {
         color: white;
     }
-
+    section {
+        width: 800px;
+        margin-top: 10px;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+    }
 </style>

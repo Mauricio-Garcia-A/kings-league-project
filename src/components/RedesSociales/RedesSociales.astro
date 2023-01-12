@@ -1,0 +1,69 @@
+---
+const { theme, mobileHidden } = Astro.props
+const socialNetworks = [
+	{
+		name: 'Twitch',
+		icon: '/imagenes/redes_sociales/twitch.svg',
+		href: 'https://www.twitch.tv/kingsleague'
+	},
+	{
+		name: 'Twitter',
+		icon: '/imagenes/redes_sociales/twitter.svg',
+		href: 'https://twitter.com/kingsleague'
+	},
+	{
+		name: 'Tiktok',
+		icon: '/imagenes/redes_sociales/tiktok.svg',
+		href: 'https://www.tiktok.com/@kingsleague'
+	},
+	{
+		name: 'Instagram',
+		icon: '/imagenes/redes_sociales/instagram.svg',
+		href: 'https://www.instagram.com/kingsleague'
+	},
+	{
+		name: 'Youtube',
+		icon: '/imagenes/redes_sociales/youtube.svg',
+		href: 'https://www.youtube.com/@KingsLeagueOfficial'
+	}
+]
+---
+
+<div >
+	{
+		socialNetworks.map(({ href, icon, name }) => (
+			<a
+				href={href}
+				target='_blank'
+				rel='noopener norefferer'
+				class=''
+			>
+				<img
+					src={icon}
+					alt={`${name} Logo`}
+					loading='lazy'
+					decoding='async'
+					fetchpriority='low'
+				/>
+			</a>
+		))
+	}
+</div>
+
+<style>
+    a {
+        text-decoration: none;
+    }
+	 img {
+		width: 30px;
+		height: 30px;
+		opacity: 0.6;
+		transform: scale(0.8);
+		transition: all 0.3s;
+	 }
+	 	 img:hover {
+		opacity: 1;
+		transform: scale(1);
+	 }	 
+	
+</style>

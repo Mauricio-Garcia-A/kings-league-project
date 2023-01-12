@@ -22,7 +22,8 @@ const { id, coachInfo, name, image, imageWhite, presidentId, socialNetworks, pla
       <p>{coachInfo.name}</p>
       {players.map(player =>{
         return 	<div>
-                  {player.fullName}
+                    <img src={`/imagenes/players/${player.image}`} alt={`img-${coachInfo.image}`} />	
+                    <p>{player.fullName}</p> 
                 </div>
     })}
   </section>  
