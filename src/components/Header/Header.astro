@@ -1,0 +1,105 @@
+---
+const response = await fetch('https://kings-league-api.garcia-mauricio-ariel.workers.dev/teams')
+const teams = await response.json()
+
+const menu = [
+	{
+		name: 'Equipos',
+		href: '/equipos'
+	},
+	{
+		name: 'Calendario',
+		href: '/calendario'
+	},
+	{
+		name: 'Estadísticas',
+		href: '/estadisticas/clasificacion'
+	},
+	{
+		name: 'Contacto',
+		href: '/contacto'
+	},
+	{
+		name: 'Reglamento',
+		href: '/reglamento'
+	}
+]
+---
+<header>
+    <div>
+        { teams.map(team =>{
+            return 	<a 
+                        href={`/team/${team.id}`}
+                        title={team.name}
+                    >
+                        <img src={team.image} alt={`img-${team.id}`} />				
+                    </a>
+        })}
+            <img class='image-logo' src="/imagenes/logo-oficial.svg" alt="logo" />
+
+    </div>
+    <nav>
+        <ul>
+            {menu.map(item =>{
+                return 	<li>
+                            <a href={item.href}>{item.name}</a>
+                        </li>
+            })}
+        </ul>
+    </nav>
+
+
+</header>
+
+
+
+<style>
+    header {
+        background: rgb(255, 162, 0);
+        padding: 30px;
+    }
+    a {
+        text-decoration: none;
+    }
+    header div {
+            border-radius: 30px;
+            height: 60px;
+            background: rgb(12, 11, 11);
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content:space-evenly;
+            align-items: center;
+            border: 3px solid rgb(248, 166, 0);
+            outline: 5px solid rgba(0, 0, 0, 0.929);
+           
+
+        }
+    img {
+		width: 40px;
+        filter: drop-shadow(0px 0px 9px rgba(255, 255, 255, 0.431));
+        transition: 0.3s;
+
+    }
+    img:hover {
+        width: 60px;
+        filter: drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.732));
+    }
+
+	.image-logo {
+		width: 100px;
+        z-index: 1;
+	}
+	ul {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+	li {
+        text-decoration: none;
+        list-style:none;
+        padding-right: 30px;
+    }
+    li a {
+        color: white;
+    }
+
+</style>

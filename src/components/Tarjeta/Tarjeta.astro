@@ -1,0 +1,35 @@
+---
+import { prop } from "cheerio/lib/api/attributes";
+
+const {name, image, color } = Astro.props
+---
+
+<article style ={{background: color}}>
+    <img src={`/imagenes/logo_inverse/${image}`} alt='' />
+    <h2>{name}</h2>
+
+</article>
+
+<style>
+    article {
+        width: 300px;
+        height: 140px;
+        border: 1px solid black;
+        border-radius: 5px;
+        color: rgb(255, 255, 255);
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content:space-around;
+        align-items: center;
+    }
+    img {
+        width: 70px;
+        margin: 20px;
+    }
+    h2 {
+        margin: 20px;
+        text-align: center;
+    }
+    
+
+</style>

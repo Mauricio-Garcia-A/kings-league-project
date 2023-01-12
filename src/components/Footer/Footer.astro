@@ -1,0 +1,103 @@
+---
+const NAV_ENTRIES = [
+    {
+        name: "Equipos",
+        href: "/equipos",
+    },
+    {
+        name: "Jugador 12",
+        href: "/jugador-12",
+    },
+    {
+        name: "Calendario",
+        href: "/calendario",
+    },
+    {
+        name: "Estadísticas",
+        href: "/estadisticas",
+    },
+    {
+        name: "Reglamento",
+        href: "/reglamento",
+    },
+    {
+        name: "Faqs",
+        href: "/faqs",
+    },
+    {
+        name: "Draft",
+        href: "/draft",
+    },
+];
+
+const PARTNERS = [
+    { name: "infojobs", image: "logo-infojobs.svg" },
+    { name: "adidas", image: "logo-adidas.svg" },
+    ,
+    { name: "spotify", image: "logo-spotify.svg" },
+    { name: "cupra", image: "logo-cupra.svg" },
+    { name: "grefusa", image: "logo-grefusa.svg" },
+    { name: "imagin", image: "logo-imagin.svg" },
+    { name: "iqoption", image: "logo-iqoption.svg" },
+    { name: "mahou", image: "logo-mahou.svg" },
+    { name: "mi", image: "logo-mi.svg" },
+    { name: "portbcn", image: "logo-portbcn.svg" },
+    { name: "shukran", image: "logo-shukran.png" },
+    { name: "simyo.", image: "logo-simyo.svg" },
+];
+---
+
+<footer>
+    <section class="section-partners">
+        <p>Principal Partner</p>
+        <div class='linea' />
+        <div class="conteiner-partners">
+            {
+                PARTNERS.map((partner) => {
+                    return (
+                        <img
+                            src={`/imagenes/partners/${partner.image}`}
+                            alt={partner.name}
+                        />
+                    );
+                })
+            }
+        </div>
+        <div class='linea' />
+    </section>
+    <section class="conteiner-footer">
+        <img class="image-title" src="/imagenes/logo-title.svg" alt="logo" />
+        <span>Contacto</span>
+        <span>Política de Privacidad</span>
+        <span>Aviso legal</span>
+        <span>Política de Cookies</span>
+    </section>
+</footer>
+
+<style>
+    .conteiner-footer {
+        background: #222;
+    }
+    .conteiner-footer img {
+        width: 200px;
+    }
+    .linea{
+        width: 90%;
+        height: 0px;
+        border: 1px solid rgb(251, 159, 0);
+    }
+   
+    .section-partners {
+        background: rgb(10, 10, 10);
+        color: white;
+
+    }
+    .conteiner-partners {
+        height: 100px;
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 20px;
+        justify-content: space-around;
+        align-items: center;
+    }
+</style>
