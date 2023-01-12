@@ -1,0 +1,34 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getAllTeams } from "../../services/teams";
+
+export async function getStaticPaths() {
+	const teams = await getAllTeams()
+	return teams.map((team) => ({
+		params: { teamId: team.id },
+		props: { ...team }
+	}))
+}
+
+//const { teamId } = Astro.params;
+const { id, coachInfo, name, image, imageWhite, presidentId, socialNetworks, players, color } = Astro.props
+---
+
+<Layout title={name}>
+  <section>
+      <img src={image} alt={`img-${id}`} />	
+      <h1>{name}</h1>
+      <img src={`/imagenes/coaches/${coachInfo.image.replace('webp','png')}`} alt={`img-${coachInfo.image}`} />	
+      <p>{coachInfo.name}</p>
+      {players.map(player =>{
+        return 	<div>
+                  {player.fullName}
+                </div>
+    })}
+  </section>  
+</Layout>
+<style>
+  img {
+    width: 200px;
+  }
+</style>
