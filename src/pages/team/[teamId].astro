@@ -1,5 +1,7 @@
 ---
+import RedesSociales from "../../components/RedesSociales/RedesSociales.astro";
 import Layout from "../../layouts/Layout.astro";
+import { getPresidentId } from "../../services/presidentId";
 import { getAllTeams } from "../../services/teams";
 
 export async function getStaticPaths() {
@@ -12,24 +14,217 @@ export async function getStaticPaths() {
 
 //const { teamId } = Astro.params;
 const { id, coachInfo, name, image, imageWhite, presidentId, socialNetworks, players, color } = Astro.props
+const president = await getPresidentId({id:presidentId})
+
 ---
 
 <Layout title={name}>
   <section>
-      <img src={image} alt={`img-${id}`} />	
-      <h1>{name}</h1>
-      <img src={`/imagenes/coaches/${coachInfo.image.replace('webp','png')}`} alt={`img-${coachInfo.image}`} />	
-      <p>{coachInfo.name}</p>
-      {players.map(player =>{
-        return 	<div>
-                    <img src={`/imagenes/players/${player.image}`} alt={`img-${coachInfo.image}`} />	
-                    <p>{player.fullName}</p> 
-                </div>
-    })}
+    <article style={{background: color}}>
+      <header>
+        <div class='contenedor-logo'>
+            <img src={image} alt={`img-${id}`} />	
+        </div>
+        <div class='contenedor-titulo'>
+          <h1>{name}</h1>
+          <RedesSociales />
+        </div>
+        
+        <div class="contenedor-presidente">
+          <img class="imagen-presidente" src={president.image} alt={`img-${id}`} />	
+          <div class="contenedor-presentacion-nombre">
+            <span>PRECIDENTE</span>
+            <h2>{president.name}</h2>
+          </div>
+        </div>
+        <div class='contenedor-estadisticas'>
+          aaa
+        </div>
+      </header>
+      
+      <section class='contenedor-dt'>
+        <h2>DT</h2>
+           <img class='fondo-dt' src='/imagenes/dt-fondo.jpg' />	
+            <div class='contenedor-imagen-dt'>
+              <img class='imagen-dt' src={`/imagenes/coaches/${coachInfo.image.replace('webp','png')}`} alt={`img-${coachInfo.image}`} />	
+              <article>
+                  <p>{coachInfo.name}</p>
+              </article>
+            </div>
+            
+            <img class='logo-blanco-dt' src={`/imagenes/logo_inverse/${imageWhite}`} />	
+      </section>
+      <section class='contenedor-equipo'>
+        <h2> EQUIPO</h2>
+        <div class='contenedor-jugadores'>
+          {players.map(player =>{
+                return 	<div>
+                            <img class='imagen-jugador' src={`/imagenes/players/${player.image}`} alt={`img-${coachInfo.image}`} />	
+                            <p>{player.fullName}</p> 
+                        </div>
+            })}
+        </div>
+      </section>
+      
+    </article>
   </section>  
 </Layout>
 <style>
-  img {
+
+  header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 0px 20px 0px 20px;
+    height: 350px;
+    position: relative;
+  }
+
+  .contenedor-logo {
+    width: 200px;
+    position: relative;
+  }
+  .contenedor-logo img {
+    position: absolute;
+    top: -60px;
     width: 200px;
   }
+
+  .contenedor-titulo {
+    width: 320px;
+    height: 100px;
+    padding: 20px 0px 0px 30px;
+   
+  }
+  .contenedor-titulo h1 {
+     color: white;
+    font-size: 40pt;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+        
+  }
+  .contenedor-presidente {
+    width: 300px;
+    position: relative;
+  }
+
+  .imagen-presidente {
+    width: 300px;
+    position: absolute;
+    top: -100px;
+  }
+
+  .contenedor-presentacion-nombre {
+    position: absolute;
+    top: 270px;
+    width: 300px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.589);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .contenedor-estadisticas {
+    position: absolute;
+    left: 40px;
+    bottom: 0;
+    width: 500px;
+    height: 130px;
+    background: rgba(23, 22, 22, 0.697);
+    border-radius: 10px;
+  }
+
+
+  section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+ 
+  }
+  article {
+    width: 900px;
+    border: 1px solid black;
+    border-radius: 10px;
+   } 
+  
+   .contenedor-dt {
+    position: relative;
+    width: 100%;
+    height: 420px;
+  }
+ 
+  .contenedor-dt h2 {
+    font-size: 80pt;
+    color: white;
+    position: absolute;
+    left: 60px;
+    top: 80px;
+    padding: 0;
+    margin: 0;
+
+  }
+
+  .fondo-dt {
+    width: 500px;
+    border-radius: 10px;
+    opacity: 0.4;
+    position: absolute;
+    top: 70px;
+    right: 110px;
+
+  }
+  .imagen-dt {
+    width: 180px;
+    
+  }
+
+  .contenedor-imagen-dt {
+      position: absolute  ;
+      z-index: 3;
+      left: 180px;
+      bottom: 30px;
+     
+      display: flex;
+      gap: 0;
+      flex-direction: column;
+  }
+  .contenedor-imagen-dt article {
+    width: 160px;
+    height: 40px;
+    background: rgba(232, 120, 0, 0.848);
+    color: white;
+    margin: 0;
+    padding: 0;
+
+  }
+  
+  .logo-blanco-dt {
+    width: 100px;
+    z-index: 2;
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    
+  }
+  
+  .contenedor-equipo {
+    display: flex;
+    flex-direction: column;
+  }
+  .contenedor-jugadores {
+    display: flex;
+    flex-flow: row wrap;
+    gap:20px
+  }
+
+  .imagen-jugador {
+    width: 150px;
+  }
+ 
+
+  
+
 </style>
